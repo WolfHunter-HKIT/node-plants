@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const mysql = require("mysql");
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -42,11 +45,11 @@ connection.connect(function (err) {
 //   res.json({ message: "OK " });
 // });
 
-app.post("/trees", (req, res) => {
+app.post("/plants", (req, res) => {
 	let sql;
 
 	sql = `
-    INSERT INTO trees
+    INSERT INTO plants
     (name, height, type)
     VALUES (
         ?,?,?
